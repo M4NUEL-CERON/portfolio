@@ -53,19 +53,14 @@ function Stops({ items }: { items: { name: string; note: string }[] | string[] }
   );
 }
 
-function Contact({ t }: { t: T }) {
+function Contact({ t, lang }: { t: T; lang: Lang }) {
   return (
     <div className="actions">
       <a className="btn" href={LINKEDIN} target="_blank" rel="noreferrer">
         {t.linkedin} <Arrow />
       </a>
       <a className="link" href={`mailto:${EMAIL}`}>{t.email}</a>
-      <span className="link cv">
-        CV{" "}
-        <a href={CV_EN} target="_blank" hrefLang="en" aria-label={t.cvEn}>EN</a>
-        {" / "}
-        <a href={CV_ES} target="_blank" hrefLang="es" aria-label={t.cvEs}>ES</a>
-      </span>
+      <a className="link" href={lang === "es" ? CV_ES : CV_EN} target="_blank" hrefLang={lang} aria-label={lang === "es" ? t.cvEs : t.cvEn}>CV</a>
       <a className="link" href={GITHUB} target="_blank" rel="noreferrer">GitHub</a>
     </div>
   );
@@ -100,7 +95,7 @@ export function Home({ lang }: { lang: Lang }) {
           </h1>
           <p className="role">{t.role}</p>
           <p className="lede">{t.lede}</p>
-          <Contact t={t} />
+          <Contact t={t} lang={lang} />
         </div>
 
         <Rain />
@@ -182,7 +177,7 @@ export function Home({ lang }: { lang: Lang }) {
             <p>
               <a className="mail" href={`mailto:${EMAIL}`}>{EMAIL}</a>
             </p>
-            <Contact t={t} />
+            <Contact t={t} lang={lang} />
           </div>
           <Image className="portrait" src={portrait} alt="Manuel Cerón" sizes="(max-width: 800px) 70vw, 24rem" />
         </div>

@@ -183,13 +183,16 @@ Signage, not a pill.
 - **Shape:** square corners (0).
 - **Primary:** sodium fill, tower-shadow text, display face 700 at 1.2rem with 0.12em tracking, uppercase, padding 0.95rem 1.4rem 0.8rem, trailing 18×12 SVG arrow.
 - **Hover / Focus:** lifts 2px with a stronger sodium glow; the arrow slides 4px right; 0.3s on the house ease. Focus is a 2px sodium outline at 4px offset.
-- **Text link (secondary):** label type, tracked caps in headlamp white, 1px underline in fog at 0.25em offset; hover turns text and underline sodium. Used for Email, CV, GitHub and repo links. One primary button per action group.
+- **Text link (secondary):** label type, tracked caps in headlamp white, 1px underline in fog at 0.25em offset; hover turns text and underline sodium. Used for Email, CV, GitHub and repo links. The CV link opens the PDF in the page language (EN at /, ES at /es). One primary button per action group.
 
 ### Navigation
 Top bar absolutely positioned over the hero sky: wordmark left, three section links center, live clock right ("CUENCA hh:mm UTC−5", hour in sodium semibold, rest in dawn silver). All label type in fog; nav hover turns sodium. Mobile keeps only the clock.
 
 ### Transit Line (signature)
 A numbered project line: circular sodium bullet with the line number, title, summary, end-aligned text links, then a row of stations on a 3px rail, then a tracked-caps tag strip. Each station is a ring with a semibold caps name and a fog note. On hover or focus-within, a glowing sodium train rides the rail over 1.4s and stations fill sodium in sequence (staggered by index). Under touch, stations are lit by default; under reduced motion, nothing animates. The same component, without notes, is the stack line along the hero's base.
+
+### Portrait Station
+The closing portrait is a station: the cut-out sits in a 19rem circle (14rem on mobile) with a 3px sodium ring over a blue-hour radial disc, framed head and shoulders, and stands clear above the towers instead of overlapping them.
 
 ### Timetable Row
 Date in sodium station type on the left, role title in display caps with the employer after a muted dot separator, a fog location line, and role bullets in two columns separated by faint hairlines.
