@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { content } from "../content";
-import { Home } from "../home";
+import { HomePage } from "@/components/HomePage";
+import { content } from "@/content/copy";
 
 export const metadata: Metadata = {
   ...content.es.meta,
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <Home lang="es" />;
+  return <HomePage lang="es" />;
 }

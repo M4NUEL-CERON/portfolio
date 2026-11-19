@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Overpass } from "next/font/google";
-import { content } from "./content";
+import { content } from "@/content/copy";
 import "./globals.css";
 
 const display = Big_Shoulders({ variable: "--font-display", subsets: ["latin"], adjustFontFallback: false });

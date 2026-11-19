@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manuel Cerón · Portfolio
 
-## Getting Started
+My work drawn as a night transit network: each project is a numbered line, and the stops are the route a request takes through it. Bilingual (English at `/`, Spanish at `/es`) and prerendered as static pages.
 
-First, run the development server:
+**[manuelceron.vercel.app](https://manuelceron.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Hero: "Manuel Cerón, Full Stack Developer" in tall condensed type over a rainy night skyline with lit windows; below it, the tech stack laid out as stops on a yellow transit line](docs/screenshots/hero.jpg)
+
+| Projects as transit lines | On a phone |
+|---|---|
+| ![The "Lines in service" section: line 1 is CuteURL, with its summary, links to the live demo and both repos, and a screenshot of the app](docs/screenshots/lines.jpg) | <img src="docs/screenshots/mobile.jpg" width="260" alt="The hero on a phone: name, role, a LinkedIn button and the stack as a two-column list of stops under the skyline" /> |
+
+## Project structure
+
+```
+portfolio/
+├── app/                    routes only (Next.js App Router)
+│   ├── layout.tsx          fonts, metadata, <html>
+│   ├── page.tsx            English home  →  <HomePage lang="en" />
+│   ├── es/page.tsx         Spanish home  →  <HomePage lang="es" />, with its own metadata
+│   └── globals.css         the Night Transit design system (tokens, motion, layout)
+├── components/
+│   ├── HomePage.tsx        composes the sections for one language
+│   ├── sections/           Hero, ProjectLines, MoreProjects, Timetable, Contact
+│   ├── ui/                 small reusable pieces: Stops (a transit line), Lit heading, ContactLinks, Clock, Arrow
+│   └── scenery/            the seeded SVG skyline, rain and street reflection; RideOnScroll triggers motion in view
+├── content/
+│   ├── copy.ts             every string on the page, English and Spanish (Spanish is typed from English)
+│   └── site.ts             links, email, CV files and the stack, shared by both languages
+├── public/                 portrait, project screenshots, CV PDFs
+├── DESIGN.md               the design system: palette, type, motion, components
+└── PRODUCT.md              who the site is for, what it must and must not say
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Principles it follows
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Content apart from layout.** Copy lives in `content/`, so a new project or a translation is a data change, not a component change.
+- **Routes stay thin.** Pages under `app/` only pick a language and metadata; everything they render comes from `components/`.
+- **Server components by default.** Only the clock and the scroll observer run in the browser; the rest ships as prerendered HTML.
+- **Deterministic art.** The skyline is generated from a fixed seed, so server and client draw the same city and nothing shifts on load.
+- **Motion with manners.** Animations pause offscreen and respect `prefers-reduced-motion`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack
 
-## Learn More
+Next.js 16 (App Router), React 19, TypeScript, CSS with design tokens, `next/font` and `next/image`. Deployed on Vercel.
 
-To learn more about Next.js, take a look at the following resources:
+## Run locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run build   # production build
+```

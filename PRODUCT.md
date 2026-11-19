@@ -20,7 +20,7 @@ Balanced Full Stack: builds complete products end to end, from Java + Spring Boo
 Recruiters visit from a LinkedIn profile, a job application or a CV link, often on a laptop between other candidates, sometimes on mobile. All content is in English.
 
 ## Capabilities and Constraints
-- Bilingual: English at / (primary, for international recruiters) and Spanish at /es. All copy lives in app/content.ts; code names stay untranslated.
+- Bilingual: English at / (primary, for international recruiters) and Spanish at /es. All copy lives in content/copy.ts (links and contact details in content/site.ts); code names stay untranslated.
 - Stack: Next.js 16 (App Router) + TypeScript + Tailwind CSS 4, repo at github.com/M4NUEL-CERON/portfolio.
 - Keep the code lean, with no unnecessary abstractions.
 - Location: Cuenca, Ecuador (UTC-5), working remote.

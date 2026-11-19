@@ -1,5 +1,5 @@
-import { Home } from "./home";
+import { HomePage } from "@/components/HomePage";
 
 export default function Page() {
-  return <Home lang="en" />;
+  return <HomePage lang="en" />;
 }

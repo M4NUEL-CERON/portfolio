@@ -11,7 +11,7 @@ type Line = { name: string; summary: string; shot: StaticImageData; stops: Stop[
 // smaller side projects: name, one line, [label, url] links, language
 type Branch = { name: string; note: string; links: [string, string][]; tags: string };
 // [before, highlighted, after]: the highlighted part is lit in sodium
-type Heading = [string, string, string];
+export type Heading = [string, string, string];
 
 const PROJECT = {
   cuteDemo: "https://m4nuel-ceron.github.io/CuteURL-Frontend/",
@@ -228,3 +228,4 @@ const es: typeof en = {
 };
 
 export const content = { en, es };
+export type Copy = typeof en;
