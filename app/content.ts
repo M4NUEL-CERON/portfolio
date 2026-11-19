@@ -3,6 +3,7 @@ import type { StaticImageData } from "next/image";
 import cuteShot from "../public/img/projects/cuteurl.jpg";
 import monitorShot from "../public/img/projects/monitor.jpg";
 import parceShot from "../public/img/projects/parce.jpg";
+import cuentasShot from "../public/img/projects/cuentas.jpg";
 export type Lang = "en" | "es";
 
 type Stop = { name: string; note: string };
@@ -20,6 +21,8 @@ const PROJECT = {
   monitorDemo: "https://api-performance-monitor-one.vercel.app",
   parce: "https://parce-api.vercel.app",
   parceRepo: "https://github.com/M4NUEL-CERON/parce-api",
+  cuentas: "https://cuentas-claras-manuel.vercel.app",
+  cuentasRepo: "https://github.com/M4NUEL-CERON/cuentas-claras",
 };
 
 const en = {
@@ -79,6 +82,20 @@ const en = {
       ],
       links: [["Live site", PROJECT.parce], ["Repository", PROJECT.parceRepo]],
       tags: "Node.js · Vercel Functions · REST · JSON · HTML · CSS · node:test",
+    },
+    {
+      name: "Cuentas Claras",
+      shot: cuentasShot,
+      summary: "Split shared expenses with no sign-up. Create a group, share the link, log who paid what, and it tells everyone who pays whom, in at most n − 1 transfers. Bilingual, with a dark mode and a capybara mascot.",
+      stops: [
+        { name: "Browser", note: "React + TypeScript app on Vercel; the link is the key, and recent groups stay in the browser" },
+        { name: "POST /expenses", note: "Validates the amount for the currency: COP and CLP have no decimals, so 1500.5 pesos gets a 400" },
+        { name: "Spring Boot", note: "Docker image on Render; errors come back as RFC 9457 problem details" },
+        { name: "Ledger", note: "Integer minor units, so uneven splits always add up; greedy settling pays the biggest debt first" },
+        { name: "PostgreSQL", note: "Neon, with the schema in Flyway migrations; tests run the same migration on H2" },
+      ],
+      links: [["Live demo", PROJECT.cuentas], ["Repository", PROJECT.cuentasRepo]],
+      tags: "Java 25 · Spring Boot 4 · PostgreSQL · Flyway · JPA · React 18 · TypeScript · Vite · Docker",
     },
   ] as Line[],
   shotAlt: "Screenshot of the live",
@@ -164,6 +181,18 @@ const es: typeof en = {
         { name: "JSON + CORS", note: "Abierta a cualquier origen y sin llave; node:test cubre rutas, filtros y el cambio de día en hora de Colombia" },
       ],
       links: [["Sitio en vivo", PROJECT.parce], ["Repositorio", PROJECT.parceRepo]],
+    },
+    {
+      ...en.lines[3],
+      summary: "Divide gastos compartidos sin registro. Creas un grupo, compartes el link, anotas quién pagó qué y te dice quién le paga a quién, con máximo n − 1 transferencias. Bilingüe, con modo oscuro y un chigüiro de mascota.",
+      stops: [
+        { name: "Navegador", note: "App en React + TypeScript en Vercel; el link es la llave y los grupos recientes quedan en el navegador" },
+        { name: "POST /expenses", note: "Valida el valor según la moneda: COP y CLP no tienen decimales, así que 1500,5 pesos recibe un 400" },
+        { name: "Spring Boot", note: "Imagen Docker en Render; los errores vuelven como problem details RFC 9457" },
+        { name: "Ledger", note: "Unidades mínimas enteras, así las divisiones desiguales siempre cuadran; el saldo voraz paga primero la deuda más grande" },
+        { name: "PostgreSQL", note: "Neon, con el esquema en migraciones Flyway; los tests corren la misma migración en H2" },
+      ],
+      links: [["Demo en vivo", PROJECT.cuentas], ["Repositorio", PROJECT.cuentasRepo]],
     },
   ],
   shotAlt: "Captura de la versión en vivo de",
