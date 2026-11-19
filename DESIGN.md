@@ -194,6 +194,12 @@ A numbered project line: circular sodium bullet with the line number, title, sum
 ### Portrait Station
 The closing portrait is a station: the cut-out sits in a 19rem circle (14rem on mobile) with a 3px sodium ring over a blue-hour radial disc, framed head and shoulders, and stands clear above the towers instead of overlapping them.
 
+### Project Shot
+Each line shows a real screenshot of its live demo (1440×900, captured from the deployed site) between the line head and the stations, cropped 16:8 from the top with a 1px rail-rule border, square corners. It sits slightly dimmed and brightens, with a sodium-tinted border, when the line lights up.
+
+### Branch Lines
+Smaller projects close the lines section as timetable-style rows (name in station caps, one-line note, language tags, text links), followed by one primary button out to all repositories on GitHub.
+
 ### Timetable Row
 Date in sodium station type on the left, role title in display caps with the employer after a muted dot separator, a fog location line, and role bullets in two columns separated by faint hairlines.
 

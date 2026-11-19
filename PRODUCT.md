@@ -48,6 +48,7 @@ Binding visual constraint, set by the user: dark and bold. A dark background (na
   - Prometheus is exposed through Actuator, with SLO buckets at 50ms, 100ms, 200ms, 500ms and 1s.
   - No live demo and no README.
 - **Parce API** (third line, added at the user's request): github.com/M4NUEL-CERON/parce-api, live at https://parce-api.vercel.app. A free public API of Colombian sayings and traditional dishes (recipes plus Wikimedia Commons photos with author and license). Node.js on Vercel Functions: a rewrite folds /api/:ruta* into one handler; each data/*.json file is a resource with list, /hoy, /random, by-id and per-field filters (e.g. ?region=tolima); accent-insensitive search; open CORS; node:test suite.
+- **Branch lines** ("More projects"): Game-Dino, Game-Snake and NeetCode submissions, from the public repos and their own descriptions, plus a link to all repositories.
 - No testimonials, metrics or user counts. Do not invent any.
 
 ## Product Principles

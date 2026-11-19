@@ -1,8 +1,14 @@
 // All page copy, per language. Code names (endpoints, frameworks) stay as they are in both.
+import type { StaticImageData } from "next/image";
+import cuteShot from "../public/img/projects/cuteurl.jpg";
+import monitorShot from "../public/img/projects/monitor.jpg";
+import parceShot from "../public/img/projects/parce.jpg";
 export type Lang = "en" | "es";
 
 type Stop = { name: string; note: string };
-type Line = { name: string; summary: string; stops: Stop[]; links: [string, string][]; tags: string };
+type Line = { name: string; summary: string; shot: StaticImageData; stops: Stop[]; links: [string, string][]; tags: string };
+// smaller side projects: name, one line, [label, url] links, language
+type Branch = { name: string; note: string; links: [string, string][]; tags: string };
 // [before, highlighted, after]: the highlighted part is lit in sodium
 type Heading = [string, string, string];
 
@@ -34,6 +40,7 @@ const en = {
   lines: [
     {
       name: "CuteURL",
+      shot: cuteShot,
       summary: "A URL shortener with no sign-up. Paste a long link, get a six-character one that redirects for 30 days. Backend and frontend are separate deploys.",
       stops: [
         { name: "Browser", note: "React + TypeScript UI on GitHub Pages; says so when the free-tier API is waking up" },
@@ -47,6 +54,7 @@ const en = {
     },
     {
       name: "API Performance Monitor",
+      shot: monitorShot,
       summary: "A Spring Boot API that measures itself, with a live dashboard. Press Generate traffic and 400 real requests leave your browser; requests/sec and p50, p99 and p99.5 latency per endpoint move in front of you.",
       stops: [
         { name: "Browser", note: "React + TypeScript dashboard fires 400 GETs, 8 at a time, with a few deliberate 404s" },
@@ -60,6 +68,7 @@ const en = {
     },
     {
       name: "Parce API",
+      shot: parceShot,
       summary: "A free public API of Colombian sayings and traditional dishes, with recipes and credited photos, plus a playful page that runs on its own API. A new resource is just a JSON file dropped into data/.",
       stops: [
         { name: "Browser", note: "Static page with the saying of the day and recipe dialogs, all fetched from the same public API" },
@@ -72,6 +81,17 @@ const en = {
       tags: "Node.js · Vercel Functions · REST · JSON · HTML · CSS · node:test",
     },
   ] as Line[],
+  shotAlt: "Screenshot of the live",
+  moreTitle: "More projects",
+  moreAll: "See everything on GitHub",
+  more: [
+    { name: "Game-Dino", note: "Chrome's offline dino game rebuilt in vanilla HTML, CSS and JavaScript, with progressive difficulty and touch support.",
+      links: [["Play", "https://m4nuel-ceron.github.io/Game-Dino/"], ["Code", "https://github.com/M4NUEL-CERON/Game-Dino"]], tags: "JavaScript · HTML · CSS" },
+    { name: "Game-Snake", note: "Classic Snake in vanilla HTML, CSS and JavaScript, with touch controls and a saved high score.",
+      links: [["Play", "https://m4nuel-ceron.github.io/Game-Snake/"], ["Code", "https://github.com/M4NUEL-CERON/Game-Snake"]], tags: "JavaScript · HTML · CSS" },
+    { name: "NeetCode submissions", note: "My solutions to NeetCode.io algorithm and data-structure problems.",
+      links: [["Code", "https://github.com/M4NUEL-CERON/neetcode-submissions"]], tags: "Java" },
+  ] as Branch[],
   timetableTitle: ["Time", "table", ""] as Heading,
   job: {
     when: "Aug 2024 — Now",
@@ -145,6 +165,17 @@ const es: typeof en = {
       ],
       links: [["Sitio en vivo", PROJECT.parce], ["Repositorio", PROJECT.parceRepo]],
     },
+  ],
+  shotAlt: "Captura de la versión en vivo de",
+  moreTitle: "Más proyectos",
+  moreAll: "Ver todo en GitHub",
+  more: [
+    { ...en.more[0], note: "El juego del dinosaurio de Chrome hecho de nuevo en HTML, CSS y JavaScript puros, con dificultad progresiva y soporte táctil.",
+      links: [["Jugar", en.more[0].links[0][1]], ["Código", en.more[0].links[1][1]]] },
+    { ...en.more[1], note: "El clásico Snake en HTML, CSS y JavaScript puros, con controles táctiles y récord guardado.",
+      links: [["Jugar", en.more[1].links[0][1]], ["Código", en.more[1].links[1][1]]] },
+    { ...en.more[2], name: "Soluciones NeetCode", note: "Mis soluciones a problemas de algoritmos y estructuras de datos de NeetCode.io.",
+      links: [["Código", en.more[2].links[0][1]]] },
   ],
   timetableTitle: ["Mi ", "recorrido", ""],
   job: {

@@ -132,10 +132,32 @@ export function Home({ lang }: { lang: Lang }) {
                 ))}
               </div>
             </div>
+            <Image className="shot" src={l.shot} alt={`${t.shotAlt} ${l.name}`} sizes="(max-width: 800px) 100vw, 70rem" placeholder="blur" />
             <Stops items={l.stops} />
             <p className="tags">{l.tags}</p>
           </article>
         ))}
+
+        <div className="more">
+          <h3>{t.moreTitle}</h3>
+          <ul>
+            {t.more.map((b) => (
+              <li key={b.name}>
+                <strong>{b.name}</strong>
+                <p>{b.note}</p>
+                <span className="tags">{b.tags}</span>
+                <span className="line-links">
+                  {b.links.map(([label, href]) => (
+                    <a key={href} className="link" href={href} target="_blank" rel="noreferrer">{label}</a>
+                  ))}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <a className="btn" href={`${GITHUB}?tab=repositories`} target="_blank" rel="noreferrer">
+            {t.moreAll} <Arrow />
+          </a>
+        </div>
       </section>
 
       <section id="timetable" className="timetable">
