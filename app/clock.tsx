@@ -15,7 +15,7 @@ export function Clock() {
   }, []);
   return (
     <span className="clock tnum">
-      Cuenca <b>{now ?? "--:--"}</b> UTC−5
+      Cuenca <b>{(now ?? "--:--").slice(0, 2)}<i className="tick">:</i>{(now ?? "--:--").slice(3)}</b> UTC−5
     </span>
   );
 }

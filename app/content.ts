@@ -12,6 +12,8 @@ const PROJECT = {
   cuteFront: "https://github.com/M4NUEL-CERON/CuteURL-Frontend",
   monitor: "https://github.com/M4NUEL-CERON/api-performance-monitor",
   monitorDemo: "https://api-performance-monitor-one.vercel.app",
+  parce: "https://parce-api.vercel.app",
+  parceRepo: "https://github.com/M4NUEL-CERON/parce-api",
 };
 
 const en = {
@@ -55,6 +57,19 @@ const en = {
       ],
       links: [["Live demo", PROJECT.monitorDemo], ["Repository", PROJECT.monitor]],
       tags: "Java 25 · Spring Boot 4 · Micrometer · Prometheus · React · TypeScript · Docker · GitHub Actions",
+    },
+    {
+      name: "Parce API",
+      summary: "A free public API of Colombian sayings and traditional dishes, with recipes and credited photos, plus a playful page that runs on its own API. A new resource is just a JSON file dropped into data/.",
+      stops: [
+        { name: "Browser", note: "Static page with the saying of the day and recipe dialogs, all fetched from the same public API" },
+        { name: "Vercel rewrite", note: "/api/:ruta* folds every path into a single serverless function" },
+        { name: "api/index.js", note: "One handler for every resource: list, /hoy, /random, by id, and field filters like ?region=tolima" },
+        { name: "data/*.json", note: "Each file becomes an endpoint; search ignores accents" },
+        { name: "JSON + CORS", note: "Open to any origin with no key; node:test covers routes, filters and the Colombia-time day rollover" },
+      ],
+      links: [["Live site", PROJECT.parce], ["Repository", PROJECT.parceRepo]],
+      tags: "Node.js · Vercel Functions · REST · JSON · HTML · CSS · node:test",
     },
   ] as Line[],
   timetableTitle: ["Time", "table", ""] as Heading,
@@ -117,6 +132,18 @@ const es: typeof en = {
         { name: "Prometheus", note: "Las mismas métricas expuestas por Actuator; Grafana listo en Docker Compose" },
       ],
       links: [["Demo en vivo", PROJECT.monitorDemo], ["Repositorio", PROJECT.monitor]],
+    },
+    {
+      ...en.lines[2],
+      summary: "Una API pública y gratis de dichos y platos típicos colombianos, con recetas y fotos con crédito, y una página divertida que funciona con su propia API. Un recurso nuevo es solo un archivo JSON en data/.",
+      stops: [
+        { name: "Navegador", note: "Página estática con el dicho del día y las recetas, todo traído de la misma API pública" },
+        { name: "Vercel rewrite", note: "/api/:ruta* lleva todas las rutas a una sola función serverless" },
+        { name: "api/index.js", note: "Un solo handler para cada recurso: lista, /hoy, /random, por id y filtros por campo como ?region=tolima" },
+        { name: "data/*.json", note: "Cada archivo se vuelve un endpoint; la búsqueda ignora las tildes" },
+        { name: "JSON + CORS", note: "Abierta a cualquier origen y sin llave; node:test cubre rutas, filtros y el cambio de día en hora de Colombia" },
+      ],
+      links: [["Sitio en vivo", PROJECT.parce], ["Repositorio", PROJECT.parceRepo]],
     },
   ],
   timetableTitle: ["Mi ", "recorrido", ""],

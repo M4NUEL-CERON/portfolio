@@ -42,10 +42,20 @@ function build() {
 
 const city = build();
 
+// Separate seed so the motion never changes the city: when each window switches on at dusk,
+// and the few apartments whose lights go off and back on while you watch.
+const lights = (() => {
+  const r = rng(77);
+  return city.windows.map(() => ({
+    on: (0.1 + r() * 1.5).toFixed(2),
+    flick: r() < 0.03 ? { at: (r() * 12).toFixed(1), every: (9 + r() * 8).toFixed(1) } : null,
+  }));
+})();
+
 // the city renders twice (hero and close), so gradient/mask ids must be unique per instance
 const useSvgId = () => useId().replace(/[^\w-]/g, "");
 
-export function Skyline() {
+export function Skyline({ dusk = false }: { dusk?: boolean }) {
   const { towers, windows, silver } = city;
   const id = useSvgId();
   return (
@@ -64,10 +74,46 @@ export function Skyline() {
       {Array.from({ length: Math.floor(silver.h / 9) }, (_, i) => (
         <rect key={i} x={silver.x} y={H - silver.h + i * 9} width={silver.w} height={1} fill="#0b0f16" opacity={0.35} />
       ))}
-      {windows.map((w, i) => (
-        <rect key={i} x={w.x} y={w.y} width={5} height={7} fill={w.sodium ? "#ffb627" : "#7ba4ff"} opacity={w.sodium ? 0.8 : 0.35} />
-      ))}
+      {/* base brightness lives in fillOpacity so the animations can run plain opacity 0 → 1 on top of it */}
+      <g className={dusk ? "windows dusk" : "windows"}>
+        {windows.map((w, i) => {
+          const l = lights[i];
+          const style = { "--on": `${l.on}s`, ...(l.flick && { "--at": `${l.flick.at}s`, "--every": `${l.flick.every}s` }) } as React.CSSProperties;
+          return (
+            <rect key={i} x={w.x} y={w.y} width={5} height={7} fill={w.sodium ? "#ffb627" : "#7ba4ff"} fillOpacity={w.sodium ? 0.8 : 0.35}
+              className={l.flick ? "flick" : undefined} style={style} />
+          );
+        })}
+      </g>
     </svg>
+  );
+}
+
+// Seeded rain in two depths: each layer is two identical sheets stacked, sliding one sheet-height per loop.
+function drops(seed: number, count: number, len: number, alpha: number) {
+  const r = rng(seed);
+  return Array.from({ length: count }, () => ({ x: r() * W, y: r() * H, l: len * (0.6 + r() * 0.8), o: alpha * (0.5 + r()) }));
+}
+const rainLayers = [
+  { cls: "far", drops: drops(31, 110, 14, 0.12) },
+  { cls: "near", drops: drops(915, 70, 30, 0.2) },
+];
+
+export function Rain() {
+  return (
+    <div className="rain" aria-hidden="true">
+      {rainLayers.map((layer) => (
+        <div key={layer.cls} className={`sheet ${layer.cls}`}>
+          {[0, 1].map((k) => (
+            <svg key={k} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+              {layer.drops.map((d, i) => (
+                <line key={i} x1={d.x} y1={d.y} x2={d.x - d.l * 0.16} y2={d.y + d.l} stroke="#c3cad6" strokeOpacity={d.o} strokeWidth={1} vectorEffect="non-scaling-stroke" />
+              ))}
+            </svg>
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }
 

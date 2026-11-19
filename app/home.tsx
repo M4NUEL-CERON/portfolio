@@ -4,7 +4,7 @@ import portrait from "../public/img/manuel.png";
 import { Clock } from "./clock";
 import { content, type Lang } from "./content";
 import { RideOnScroll } from "./ride-on-scroll";
-import { Reflection, Skyline } from "./skyline";
+import { Rain, Reflection, Skyline } from "./skyline";
 
 const LINKEDIN = "https://www.linkedin.com/in/manuel-cer%C3%B3n-564b52304/";
 const GITHUB = "https://github.com/M4NUEL-CERON";
@@ -103,8 +103,9 @@ export function Home({ lang }: { lang: Lang }) {
           <Contact t={t} />
         </div>
 
+        <Rain />
         <div className="city">
-          <Skyline />
+          <Skyline dusk />
           <div className="line stack" aria-label={t.stackLabel}>
             <Stops items={stack} />
           </div>

@@ -197,6 +197,9 @@ Date in sodium station type on the left, role title in display caps with the emp
 ### City (signature)
 Deterministic SVG skyline from a fixed seed: dark rectangle towers alternating tower-shadow tones, sparse 5×7 windows (mostly sodium at 0.8, some window blue at 0.35), and one tall eastern tower in a dawn-silver gradient with 1px louvers. Beneath it, the wet-street reflection repeats each window and the facade as vertically blurred streaks fading to transparent. It appears in the hero and again in the close, always aria-hidden.
 
+### Night Motion (signature)
+One authored arrival, then quiet weather. On load the hero's windows switch on one by one (0.6s each on the house ease, staggered over ~1.6s from a separate seed so the city itself never changes), then the surname powers up like a sodium sign (a 1.3s flicker to a steady glow). Section headings light their sodium word the same way the first time they scroll into view. Supporting loops: seeded rain in two depths (near 0.85s, far 1.7s, translate-only, masked out above the street), the wet reflection breathing on a 6s scaleY, about 3% of windows going dark and flickering back on like apartments, a night train crossing the stack bridge every 9s, and the clock's colon ticking. Every loop pauses when its city leaves the viewport (`.idle`); under reduced motion everything is static and the rain is removed.
+
 ## Do's and Don'ts
 
 ### Do:

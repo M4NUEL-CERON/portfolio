@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-// Runs each transit line's train once when it scrolls into view, so touch screens (no hover) see it too.
+// Runs each transit line's train (and lights each heading's sign) once when it scrolls into view, so touch screens see it too.
 export function RideOnScroll() {
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -15,8 +15,14 @@ export function RideOnScroll() {
       },
       { threshold: 0.6 },
     );
-    document.querySelectorAll(".line").forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    document.querySelectorAll(".line, h2").forEach((el) => io.observe(el));
+
+    // Looping weather and lights pause while their city is off screen.
+    const idle = new IntersectionObserver((entries) => {
+      for (const e of entries) e.target.classList.toggle("idle", !e.isIntersecting);
+    });
+    document.querySelectorAll(".hero, .close").forEach((el) => idle.observe(el));
+    return () => { io.disconnect(); idle.disconnect(); };
   }, []);
   return null;
 }

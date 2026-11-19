@@ -47,6 +47,7 @@ Binding visual constraint, set by the user: dark and bold. A dark background (na
   - GET /api/metrics/summary returns a single snapshot that aggregates Micrometer data: current RPS and the 60-second average (a scheduled tracker that diffs request counters every second), per-endpoint latency percentiles (p50, p99, p99.5) with a status-code breakdown, and CPU, JVM heap and non-heap usage plus uptime.
   - Prometheus is exposed through Actuator, with SLO buckets at 50ms, 100ms, 200ms, 500ms and 1s.
   - No live demo and no README.
+- **Parce API** (third line, added at the user's request): github.com/M4NUEL-CERON/parce-api, live at https://parce-api.vercel.app. A free public API of Colombian sayings and traditional dishes (recipes plus Wikimedia Commons photos with author and license). Node.js on Vercel Functions: a rewrite folds /api/:ruta* into one handler; each data/*.json file is a resource with list, /hoy, /random, by-id and per-field filters (e.g. ?region=tolima); accent-insensitive search; open CORS; node:test suite.
 - No testimonials, metrics or user counts. Do not invent any.
 
 ## Product Principles
